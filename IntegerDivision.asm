@@ -85,7 +85,7 @@
     D=A
     @4 
     M=D
-    @END
+    @quotient
     0;JGT
 
 
