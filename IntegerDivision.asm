@@ -1,3 +1,10 @@
+    //check divisor not 0
+    @1
+    D=M 
+    @flag
+    D;JEQ   
+    
+    
     //Check same sign
     @0
     D=M
