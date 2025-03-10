@@ -20,13 +20,13 @@
     D=M 
     @10
     D=!D
-    M=D-1
+    M=D+1
 
     @1   //making R1 values positive
     D=M 
     @11
     D=!D
-    M=D-1
+    M=D+1
 
     @quotient
     0;JMP
