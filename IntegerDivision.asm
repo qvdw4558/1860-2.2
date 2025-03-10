@@ -65,19 +65,19 @@
     (remainderLoop)
         @6   //Removes 1 from reminants of R0
         D=M-1
+        M=D
 
         @8   //Using R8 to count subtractions
         D=M+1
         M=D
 
-        @END //If D=0 go to end
+        @6   //If D=0 go to end
+        D=M
+        @END
         D;JEQ
 
         @remainderLoop
         0;JMP
-
-
-
 
 
 (flag)   //Sets flag then goes to end
