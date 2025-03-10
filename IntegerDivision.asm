@@ -5,6 +5,17 @@
     D;JLT
     @1
     D=M
+
+    @0
+    D=M 
+    @10
+    M=D
+    @1
+    @1
+    D=M 
+    @11
+    M=D
+
     @flag
     D;JLT
     @quotient
