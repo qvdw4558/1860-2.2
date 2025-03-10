@@ -22,7 +22,7 @@
     @0   //If R1 > R0 go to remainder
     D=M
     @1
-    D-M
+    D=D-M
     @remainder
     D;JLT
 
@@ -32,6 +32,10 @@
     M=D
 
     (quotientLoop)
+        @7   //Using R7 to count amount of R1s removed - adds 1 to the multiple counter
+        D=M+1
+        M=D
+
         @6   //Removes 1 * R1 from reminants of R0
         D=M
         @1
@@ -42,34 +46,35 @@
         @6   //Checks if R6 > R1
         D=M
         @1
-        D-M
-
-        @END   //If D=0 go to end
-        D;JEQ
+        D=D-M
 
         @remainder  //If D<0 fo to remainder
-        0;JMP
+        D;JLT
 
-        @7   //Using R7 to count amount of R1s removed - adds 1 to the multiple counter
-        D=M+1
-        M=D
-
-        @quotientLoop   //If D>0 stay in loop
+        @6   //If D>0 stay in loop
+        D=M
+        @quotientLoop
         D;JGT
 
 (remainder)
-    @6   //Removes 1 from reminants of R0
-    D=M-1
-
-    @8   //Using R8 to count subtractions
-    D=M+1
-    M=D
-
-    @END //If D=0 go to end
+    @6   //If D=0 go to end
+    D=M
+    @END
     D;JEQ
+    
+    (remainderLoop)
+        @6   //Removes 1 from reminants of R0
+        D=M-1
 
-    @remainder
-    0;JMP
+        @8   //Using R8 to count subtractions
+        D=M+1
+        M=D
+
+        @END //If D=0 go to end
+        D;JEQ
+
+        @remainderLoop
+        0;JMP
 
 
 
