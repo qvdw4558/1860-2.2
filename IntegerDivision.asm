@@ -46,6 +46,9 @@
     D=!D
     M=D+1
 
+    @9   //setting flag for negatives so the end remainder can be negated
+    M=1
+
     @quotient
     0;JMP
 
@@ -61,6 +64,9 @@
     D=M
     @6   //Using R6 to store the reminants of R0
     M=D
+
+    @7   //initialising to 0
+    M=0
 
     (quotientLoop)
         @7   //Using R7 to count amount of R1s removed - adds 1 to the multiple counter
@@ -92,6 +98,8 @@
     D=M
     @END
     D;JEQ
+    @8   //initialising to 0
+    M=0
     
     (remainderLoop)
         @6   //Removes 1 from reminants of R0
@@ -120,7 +128,19 @@
     0;JGT
 
 
+
 (END)   //Puts each value in it's correct register and ends the program
+    @9   //Returns remainder to negative if triggered
+    D=M
+    @END2
+    D;JEQ
+    @8   
+    D=!M 
+    D=D+1
+    M=D 
+
+(END2)
+
     @7   //Puts the count of R1s removed into R2
     D=M 
     @2
