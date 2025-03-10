@@ -15,18 +15,31 @@
     D=M
     @flag
     D;JGT
+
+    @0   //making R0 values positive
+    D=M 
+    @10
+    D=!D
+    M=D-1
+
+    @1   //making R1 values positive
+    D=M 
+    @11
+    D=!D
+    M=D-1
+
     @quotient
     0;JMP
 
 (quotient)
-    @0   //If R1 > R0 go to remainder
+    @10   //If R1 > R0 go to remainder
     D=M
-    @1
+    @11
     D=D-M
     @remainder
     D;JLT
 
-    @0
+    @10
     D=M
     @6   //Using R6 to store the reminants of R0
     M=D
@@ -38,14 +51,14 @@
 
         @6   //Removes 1 * R1 from reminants of R0
         D=M
-        @1
+        @11
         D=D-M
         @6
         M=D
 
         @6   //Checks if R6 > R1
         D=M
-        @1
+        @11
         D=D-M
 
         @remainder  //If D<0 fo to remainder
